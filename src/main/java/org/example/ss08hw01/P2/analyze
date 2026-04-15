@@ -1,0 +1,9 @@
+* Lỗi 1: Lọt khoảng trắng vào DB
+- Nguyên nhân: trong code sử dụng @NotNull -> hệ thống chỉ kiểm tra null hoặc chuỗi rỗng
+nhưng khi người dùng nhập dấu cách (giá trị không phải null, cũng không phải rỗng)
+-> validation không bắt lỗi, để lọt khoảng trắng vào DB
+
+* Lỗi 2: Không chặn được Request từ Postman gây lỗi 500
+- Nguyên nhân: Validation hiện chỉ chạy ở Frontend, hacker gửi request trực tiếp vào API,
+Backend không có cơ chế BeanValidation chuẩn để kiểm tra dữ liệu
+-> hệ thống nhận input sai định dạng, khi xử lí logic sẽ phát sinh lỗi
